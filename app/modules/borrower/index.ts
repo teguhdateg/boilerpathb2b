@@ -7,6 +7,7 @@ interface JwtPayload{
 }
 
 export default class Borrower extends BorrowerModel {
+  
   constructor({ req, res }) {
     super({ req, res });
   }
@@ -20,7 +21,6 @@ export default class Borrower extends BorrowerModel {
       const db = this.db.define(this.table, this.datatype);
 
       const data = await db.findOne({ where: { email } });
-      console.log(this.db);
       if (data) {
         return {
           code: 500,

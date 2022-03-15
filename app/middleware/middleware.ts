@@ -39,6 +39,5 @@ class Middleware {
   }
 }
 
-export default new Middleware();
 export const CheckToken = (req: Request, res: Response, next: NextFunction) =>
   new Middleware().checkToken(req, res, next);

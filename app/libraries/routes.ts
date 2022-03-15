@@ -26,7 +26,7 @@ const GetAllRoutes = () => {
 const GenerateRoute = (
   app: Express,
   request: String,
-  middleware: String,
+  middleware: any,
   path: String,
   respon: String
 ) => {
@@ -41,16 +41,13 @@ const GenerateRoute = (
     });
   } */
   // console.log(middleware);
-  eval(ts.transpile(`app.${request}('${path}',respon);`));
+  eval(ts.transpile(`app.${request}('${path}',middleware,respon);`));
   /* typeof middleware === "undefined"
     ? 
     : eval(`router.${request}(path,mid,respon)`); */
 };
 
 const Routes = (app: Express) => {
-  var get = "get";
-  var post = "post"
-
   // console.log(router)
   // /* var routes = api(middleware); */
 
@@ -58,11 +55,14 @@ const Routes = (app: Express) => {
   // /* router.use((req, res, next) => {
   //   middleware.XApiKey(req, res, next);
   // }); */
-  const getAllRoutes = GetAllRoutes();
-  getAllRoutes.map((v) => {
-    GenerateRoute(app, v.request, v.middleware, v.path, v.respon);
+  GetAllRoutes().map((v) => {
+    let middleware = [];
+    if (v?.middleware?.length > 0 || v?.middleware) {
+      middleware = v?.middleware as any;
+    }
+
+    GenerateRoute(app, v?.request, middleware, v?.path, v?.respon);
   });
 };
 
 export default (app: Express) => Routes(app);
-

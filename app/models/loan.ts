@@ -11,7 +11,7 @@ export default class LoanModel extends ServicesBase {
     this.res = res;
   }
 
-  table = "Loans";
+  table = "loan";
 
   datatype = {
     id: {
@@ -43,6 +43,4 @@ export default class LoanModel extends ServicesBase {
       defaultValue: this.db.literal("CURRENT_TIMESTAMP"),
     },
   };
-
-  data = this.db.define(this.table, this.datatype);
 }
