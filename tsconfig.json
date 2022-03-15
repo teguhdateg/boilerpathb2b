@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "pretty": true,
+    "sourceMap": true,
+    "target": "es6",
+    "esModuleInterop": true,
+    "lib": ["dom", "esnext"],
+    "noImplicitAny": false,
+    "outDir": "./build",
+    "baseUrl": "./", // all paths are relative to the baseUrl
+    "paths": {
+      "~/*": ["app/*"], // resolve any `~/foo/bar` to `<baseUrl>/foo/bar`
+    },
+    "alwaysStrict": true,
+    "typeRoots": ["node_modules/@types"]
+  },
+  "exclude": ["node_modules"]
+}
